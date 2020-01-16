@@ -14,38 +14,57 @@
     <span class="register">注册</span>
    </div>
    <div class="right">
-     <span class="font" @mousemove="goin(1)" @mouseleave="goout">我的美团</span>
-     <span class="font">手机APP</span>
-     <span class="font" @mousemove="goin(2)" @mouseleave="goout">商家中心</span>
-     <span class="font" @mousemove="goin(3)" @mouseleave="goout">美团规则</span>
-     <span class="font">网站导航</span>
+    <div class="f-contet" @mousemove="goin(1)" @mouseleave="goout">
+      <span class="font r-font">我的美团</span>
+      <div :class="{change:num===1}" class="fcontent">
+        <div>我的订单</div>
+        <div>我的收藏</div>
+        <div>抵用券</div>
+        <div>账户设置</div>
+      </div>
+    </div>
+    <div class="App">
+      <span>手机APP</span>
+    </div>
+    <div class="f-contet" @mousemove="goin(2)" @mouseleave="goout">
+      <span class="font r-font">商家中心</span>
+      <div :class="{change:num===2}" class="scontent">
+        <div>美团餐饮商户中心</div>
+        <div>登录商家中心</div>
+        <div>美团智能收银</div>
+        <div>我想合作</div>
+        <div>手机免费开店</div>
+        <div>餐饮代理商招募</div>
+        <div>商家申请开票</div>
+        <div>免费合作美团排队</div>
+      </div>
+    </div>
+    <div class="f-contet" @mousemove="goin(3)" @mouseleave="goout">
+      <span class="font r-font">美团规则</span>
+      <div :class="{change:num === 3}" class="tcontent">
+        <div>规则中心</div>
+        <div>规则目录</div>
+        <div>规则评议院</div>
+      </div>
+    </div>
+    <div class="f-contet">
+      <span class="font r-font">网站导航</span>
+      <div :class="{change:num === 4}">
+        
+      </div>
+    </div>
    </div>
  </div>
  <div>
-  <div :class="{change:num===1}" class="content">
-    <div>我的订单</div>
-    <div>我的收藏</div>
-    <div>抵用券</div>
-    <div>账户设置</div>
-  </div>
-  <div :class="{change:num===2}" class="content">
-    <div>美团餐饮商户中心</div>
-    <div>登录商家中心</div>
-    <div>美团智能收银</div>
-    <div>我想合作</div>
-    <div>手机免费开店</div>
-    <div>餐饮代理商招募</div>
-    <div>商家申请开票</div>
-    <div>免费合作美团排队</div>
-  </div>
-  <div :class="{change:num===3}" class="content">
-    <div>规则中心</div>
-    <div>规则目录</div>
-    <div>规则评议院</div>
-  </div>
+  <dl v-for="(item,index) in arr" :key="index">
+    <dt>{{item.title}}</dt>
+    <dd v-for="(items,indexs) in arr[index].name" :key="indexs">
+      {{items}}
+    </dd>
+  </dl>
  </div>
-</div>
- 
+
+</div>  
 </template>
 
 <script>
@@ -54,7 +73,12 @@
      return {
        list:[],
        city:[],
-       num:0
+       num:0,
+       arr:[
+         {title:'酒店旅游',
+          name:['国际机票','火车票']
+         }
+       ]
      }
    },
    components: {
@@ -74,7 +98,6 @@
      },
      getNear(){
        this.$api.cityname(this.list.city).then(res=>{
-         this.arr = res.data.areas
          let near=[]
          near.push(res.data.areas[0].type)
          near.push(res.data.areas[1].type)
@@ -85,16 +108,15 @@
        })
      },
      goin(item){
-       console.log(item,'111');
        this.num = item
      },
      goout(){
-       console.log(item,'000');
        this.num = 0
      }
    },
    mounted() {
      this.getCity()
+     console.log(this.arr);
    },
    watch: {
 
@@ -118,8 +140,8 @@
   font-size: 12px;
   color: #999;
   height: 40px;
-  line-height: 40px;
   .left{
+    line-height: 40px;
     .changecity{
       background: #F4F4F4;
       border: 1px solid #E5E5E5;
@@ -155,13 +177,77 @@
     }
   }
   .right{
-    .font{
+    display: flex;
+    .f-contet{
+      padding-top: 12px;
+      &:hover{
+        box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+        color: #FE8C00;
+        background-color: #fff;
+        border-color: #E5E5E5;
+      }
+      .font{
+      cursor: pointer;
       padding: 12px 14px;
+      }
+    }
+    .App{
+      padding: 12px 14px;
+      cursor: pointer;
+      &:hover{
+        color: #FE8C00
+      }
     }
   }
 }
-.content{
+.fcontent{
   display: none;
+  font-size: 12px;
+  color: #999;
+  background: #fff;
+  padding: 12px 14px;
+  div{
+    text-align: center;
+    margin-top: 12px;
+    &:hover{
+      cursor: pointer;
+      color: #FE8C00;
+    }
+  }
+}
+.scontent{
+  display: none;
+  font-size: 12px;
+  position: absolute;
+  left: 1001px;
+  color: #999;
+  background: #fff;
+  padding: 12px 14px;
+  div{
+    text-align: center;
+    margin-top: 12px;
+    &:hover{
+      cursor: pointer;
+      color: #FE8C00;
+    }
+  }
+}
+.tcontent{
+  display: none;
+  position: absolute;
+  left: 1114px;
+  font-size: 12px;
+  color: #999;
+  background: #fff;
+  padding: 12px 14px;
+  div{
+    text-align: center;
+    margin-top: 12px;
+    &:hover{
+      cursor: pointer;
+      color: #FE8C00;
+    }
+  }
 }
 .change{
   display: block !important;
