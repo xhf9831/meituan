@@ -49,21 +49,17 @@
     </div>
     <div class="f-contet">
       <span class="font r-font">网站导航</span>
-      <div :class="{change:num === 4}">
-        
+      <div :class="{change:num === 4}" class="fivcontent">
+        <dl v-for="(item,index) in arr" :key="index">
+          <dt>{{item.title}}</dt>
+          <dd v-for="(items,indexs) in arr[index].name" :key="indexs">
+            <span>{{items}}</span>
+          </dd>
+        </dl>
       </div>
     </div>
    </div>
  </div>
- <div>
-  <dl v-for="(item,index) in arr" :key="index">
-    <dt>{{item.title}}</dt>
-    <dd v-for="(items,indexs) in arr[index].name" :key="indexs">
-      {{items}}
-    </dd>
-  </dl>
- </div>
-
 </div>  
 </template>
 
@@ -76,10 +72,46 @@
        num:0,
        arr:[
          {title:'酒店旅游',
-          name:['国际机票','火车票']
-         }
-       ]
-     }
+          name: [
+            "国际机票",
+            "火车票",
+            "民宿",
+            "经济型酒店",
+            "主题酒店",
+            "商务酒店",
+            "公寓",
+            "豪华酒店",
+            "客栈",
+            "青年旅社",
+            "度假酒店",
+            "别墅",
+            "农家院"
+          ]},
+      // 吃美食
+          {title:'吃美食',
+          name: ["烤鱼", "特色小吃", "烧烤", "自助餐", "火锅", "代金券"]},
+          // 看电影
+          {title:'看电影',
+          name: [
+            "热映电影",
+            "热门影院",
+            "热映电影口碑榜",
+            "最受期待电影",
+            "国内票房榜",
+            "北美票房榜",
+            "电影排行榜"
+          ]},
+          // 手机应用图片
+          {title:'手机应用',
+            images:[
+            "https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png",
+            "https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png ",
+            "https://p0.meituan.net/travelcube/162c3308d9622f6d9cfaa49e60be4dca8573.png ",
+            "https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png ",
+            "https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png "
+          ]}
+        ]
+      } 
    },
    components: {
 
@@ -248,6 +280,10 @@
       color: #FE8C00;
     }
   }
+}
+.fivcontent{
+  display: flex;
+  position: absolute;
 }
 .change{
   display: block !important;
