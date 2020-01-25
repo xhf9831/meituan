@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="all-content">
   <div class="header">
    <div class="left">
     <Icon type="md-pin" size="15" />
@@ -47,16 +47,36 @@
         <div>规则评议院</div>
       </div>
     </div>
-    <div class="f-contet">
+    <div class="f-contet" @mousemove="goin(4)" @mouseleave="goout">
       <span class="font r-font">网站导航</span>
       <div :class="{change:num === 4}" class="fivcontent">
-        <dl v-for="(item,index) in arr" :key="index">
-          <dt>{{item.title}}</dt>
-          <dd v-for="(items,indexs) in arr[index].name" :key="indexs">
-            <span>{{items}}</span>
-          </dd>
-        </dl>
-      </div>
+        <div class="fiv-content" >
+          <dl v-for="(item,index) in arr" :class="`changew${index}`" :key="index">
+            <dt class="changef">{{item.title}}</dt>
+            <dd v-for="(items,indexs) in arr[index].name" :class="`changel${index}`" :key="indexs">
+              {{items}}
+            </dd>
+          </dl>
+          <dl class="finalb">
+            <dt class="changef">手机应用</dt>
+            <dd>
+              <img src="https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png" alt="">
+            </dd>
+            <dd>
+              <img src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png" alt="">
+            </dd>
+            <dd>
+              <img src="https://p0.meituan.net/travelcube/162c3308d9622f6d9cfaa49e60be4dca8573.png" alt="">
+            </dd>
+            <dd>
+              <img src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png" alt="">
+            </dd>
+            <dd>
+              <img src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png" alt="">
+            </dd>
+          </dl>
+        </div>
+      </div>   
     </div>
    </div>
  </div>
@@ -100,15 +120,6 @@
             "国内票房榜",
             "北美票房榜",
             "电影排行榜"
-          ]},
-          // 手机应用图片
-          {title:'手机应用',
-            images:[
-            "https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png",
-            "https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png ",
-            "https://p0.meituan.net/travelcube/162c3308d9622f6d9cfaa49e60be4dca8573.png ",
-            "https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png ",
-            "https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png "
           ]}
         ]
       } 
@@ -148,7 +159,6 @@
    },
    mounted() {
      this.getCity()
-     console.log(this.arr);
    },
    watch: {
 
@@ -248,10 +258,11 @@
   }
 }
 .scontent{
+  margin-top: 10px;
   display: none;
   font-size: 12px;
   position: absolute;
-  left: 1001px;
+  left: 1087px;
   color: #999;
   background: #fff;
   padding: 12px 14px;
@@ -267,11 +278,12 @@
 .tcontent{
   display: none;
   position: absolute;
-  left: 1114px;
+  left: 1211px;
   font-size: 12px;
   color: #999;
   background: #fff;
-  padding: 12px 14px;
+  padding: 11px 8px;
+  margin-top: 10px;
   div{
     text-align: center;
     margin-top: 12px;
@@ -281,11 +293,78 @@
     }
   }
 }
-.fivcontent{
-  display: flex;
-  position: absolute;
-}
 .change{
   display: block !important;
+}
+.all-content{
+  width: 100%;
+  background: #F8F8F8;
+}
+.fivcontent{
+  display: none;
+  .fiv-content{
+    display: none;
+    position: absolute;
+    left: 164px;
+    font-size: 12px;
+    color: #999;
+    background: #fff;
+    width: 1200px;
+    box-sizing: border-box;
+    border-top-left-radius: 4px;
+    padding: 30px 36px 36px 47px;
+    margin-top: 10px;
+    display: flex;
+    dd{
+      cursor: pointer;
+      &:hover{
+        color: #FE8C00
+      }
+    }
+  }
+}
+.changef{
+  margin-bottom: 26px;
+  font-size: 14px;
+  color: #222222;
+  font-weight: 500;
+  text-align: center;
+}
+.changew0{
+  width: 234px;
+  margin-right: 47px;
+  .changel0{
+    width: 33%;
+    text-align: center;
+    float: left;
+  }
+}
+.changew1{
+  width: 156px;
+  margin-right: 47px;
+  .changel1{
+    width: 50%;
+    text-align: center;
+    float: left;
+  }
+}
+.changew2{
+  width: 90px;
+  margin-right: 47px;
+  .changel2{
+    text-align: center;
+  }
+}
+.finalb{
+  margin-right: 47px;
+  dd{
+    display: inline-block;
+    margin: 0 8px;
+  }
+  img{
+    width: 60px;
+    height: 60px;
+    border: 0;
+  }
 }
 </style>

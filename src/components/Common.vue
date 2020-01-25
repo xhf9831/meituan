@@ -1,11 +1,14 @@
 <template>
  <div>
-    <top></top>
+  <top></top>
+  <router-view/>
+  <foot></foot>
  </div>
 </template>
 
 <script>
 import top from './top/Top'
+import foot from './foot/Foot'
  export default {
    data () {
      return {
@@ -13,7 +16,8 @@ import top from './top/Top'
      }
    },
    components: {
-     top
+     top,
+     foot
    },
    methods: {
 

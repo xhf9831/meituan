@@ -1,11 +1,10 @@
 <template>
  <div>
-   
+    
  </div>
 </template>
 
 <script>
-import top from '../../components/homeconstructure/Top'
  export default {
    data () {
      return {
@@ -19,12 +18,15 @@ import top from '../../components/homeconstructure/Top'
 
    },
    mounted() {
-     
+
    },
    watch: {
 
    },
    computed: {
+
+   },
+   filters: {
 
    }
  }
